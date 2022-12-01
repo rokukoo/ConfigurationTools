@@ -2,7 +2,8 @@ package cn.neptunex.configuration.enums;
 
 public enum ConfigurationType {
     JSON("json"),
-    YAML("yaml");
+    YAML("yaml"),
+    UNKNOWN("UNKNOWN");
 
     private final String name;
 

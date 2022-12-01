@@ -7,7 +7,7 @@ import java.lang.annotation.*;
 @Target({ElementType.METHOD, ElementType.FIELD})
 public @interface Binding {
 
-    String value() default "config.yml";
+    String value() default "";
     // This types signify what the method will do, enums get, set.
     String type() default "get";
 

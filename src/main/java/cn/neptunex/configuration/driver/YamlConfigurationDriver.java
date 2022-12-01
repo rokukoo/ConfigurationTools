@@ -33,12 +33,12 @@ public class YamlConfigurationDriver implements ConfigurationDriver {
 
     @Override
     public <T> void set(String path, T value) {
-
+        fileConfiguration.set(path, value);
     }
 
     @Override
-    public Object save() throws IOException {
+    public void save() throws IOException {
         fileConfiguration.save(new File(fileConfiguration.getCurrentPath()));
-        return null;
     }
+
 }
