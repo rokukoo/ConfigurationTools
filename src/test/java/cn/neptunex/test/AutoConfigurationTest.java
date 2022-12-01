@@ -13,9 +13,20 @@ import java.io.*;
 public class AutoConfigurationTest {
 
     @Test
-    public void test1() throws AutoConfigurationException, IOException {
+    public void test1() throws AutoConfigurationException, IOException, InterruptedException {
         SettingsConfig settingsConfig = ConfigurationEnhancer.enhance(SettingsConfig.class);
-        settingsConfig.isEnabled();
+        Thread thread = new Thread(() -> {
+            while (true){
+                System.out.println(settingsConfig.getWelcome());
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+            }
+        });
+        thread.start();
+        Thread.sleep(100000000);
     }
 
 }
@@ -27,6 +38,9 @@ interface SettingsConfig extends AutoConfiguration {
 
     @Binding("settings.debug")
     boolean isDebug();
+
+    @Binding("messages.welcome")
+    String getWelcome();
 
 }
 

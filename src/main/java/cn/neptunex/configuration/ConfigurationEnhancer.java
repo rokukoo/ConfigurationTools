@@ -51,15 +51,19 @@ public class ConfigurationEnhancer {
 
         File dataFolder = new File(parent, folder);
         Arrays.stream(Objects.requireNonNull(dataFolder.listFiles())).forEach(file -> {
-            Path filePath = Paths.get(file.getPath());
-            try(BufferedReader reader = Files.newBufferedReader(filePath)){
-                ConfigurationDriver driver = new YamlConfigurationDriver(reader);
-                InvocationHandler invocationHandler = new ConfigurationProxy<>(configurationInterface, driver);
-                T temp = (T) Proxy.newProxyInstance(classLoader, new Class[]{configurationInterface}, invocationHandler);
-                groups.add(temp);
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
+//            Path filePath = Paths.get(file.getPath());
+//            try(BufferedReader reader = Files.newBufferedReader(filePath)){
+//                ConfigurationDriver driver = new YamlConfigurationDriver(reader);
+//                InvocationHandler invocationHandler = new ConfigurationProxy<>(configurationInterface, driver);
+//                T temp = (T) Proxy.newProxyInstance(classLoader, new Class[]{configurationInterface}, invocationHandler);
+//                groups.add(temp);
+//            } catch (IOException e) {
+//                throw new RuntimeException(e);
+//            }
+            ConfigurationDriver driver = new YamlConfigurationDriver(file);
+            InvocationHandler invocationHandler = new ConfigurationProxy<>(configurationInterface, driver);
+            T temp = (T) Proxy.newProxyInstance(classLoader, new Class[]{configurationInterface}, invocationHandler);
+            groups.add(temp);
         });
 
         InvocationHandler invocationHandler = (proxy, method, args) -> {
@@ -78,9 +82,10 @@ public class ConfigurationEnhancer {
         String fileName = configuration.value();
 
         // FIXME: 这里到时候肯定还要再改, 因为这里到时候可能会有网络IO, 或者绝对路径读取等等, 我这样写只是测试
-        InputStream inputStream = ClassLoader.getSystemResourceAsStream(fileName);
-        assert inputStream != null;
-        ConfigurationDriver driver = new YamlConfigurationDriver(new BufferedReader(new InputStreamReader(inputStream)));
+        File parent = new File("D:\\rokuko\\projects\\configuration\\src\\test\\resources");
+
+        File file = new File(parent, fileName);
+        ConfigurationDriver driver = new YamlConfigurationDriver(file);
 
         InvocationHandler invocationHandler = new ConfigurationProxy<>(configurationInterface, driver);
         return (T) Proxy.newProxyInstance(classLoader, new Class[]{configurationInterface}, invocationHandler);

@@ -4,10 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6341e8c6-a37a-4aab-bec7-30ffb48f4e8e" name="Changes" comment="完成了配置文件组的代码">
+    <list default="true" id="6341e8c6-a37a-4aab-bec7-30ffb48f4e8e" name="Changes" comment="完善了README.md">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/ConfigurationEnhancer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/ConfigurationEnhancer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/driver/YamlConfigurationDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/driver/YamlConfigurationDriver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/cn/neptunex/test/AutoConfigurationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/cn/neptunex/test/AutoConfigurationTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/config.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -187,7 +190,7 @@
       <updated>1669869434248</updated>
       <workItem from="1669869436081" duration="12882000" />
       <workItem from="1669899846041" duration="3549000" />
-      <workItem from="1669904343523" duration="1596000" />
+      <workItem from="1669904343523" duration="4028000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1669869690102</created>
@@ -224,7 +227,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669904144566</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="完善了README.md">
+      <created>1669905952945</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1669905952945</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -247,6 +257,18 @@
     <MESSAGE value="finish the basic code" />
     <MESSAGE value="更名配置接口为AutoConfiguration, 并且初步引入了Yaml的实现" />
     <MESSAGE value="完成了配置文件组的代码" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成了配置文件组的代码" />
+    <MESSAGE value="完善了README.md" />
+    <option name="LAST_COMMIT_MESSAGE" value="完善了README.md" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/driver/ConfigurationDriver.java</url>
+          <line>5</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

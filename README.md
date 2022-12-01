@@ -21,6 +21,7 @@ Then, write the corresponding configuration interface according to the yaml conf
 ```java
 @Configuration
 interface SettingsConfig extends AutoConfiguration {
+    
     @Binding("settings.enable")
     boolean isEnabled();
     
