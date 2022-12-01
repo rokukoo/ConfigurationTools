@@ -1,0 +1,6 @@
+settings:
+  enable: false
+  debug: false
+
+messages:
+  welcome: '欢迎测试!'
