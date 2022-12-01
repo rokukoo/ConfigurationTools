@@ -14,17 +14,19 @@ public class AutoConfigurationTest {
 
     @Test
     public void test1() throws AutoConfigurationException, IOException {
-//        MyConfigGroup myConfigGroup = ConfigurationEnhancer.enhance(MyConfigGroup.class);
-//        myConfigGroup.groups().forEach(item -> System.out.println(item.getName() + ":" + item.getPrefix()));
+        SettingsConfig settingsConfig = ConfigurationEnhancer.enhance(SettingsConfig.class);
+        settingsConfig.isEnabled();
     }
 
 }
 
 @Configuration
-interface MyConfig extends AutoConfiguration {
+interface SettingsConfig extends AutoConfiguration {
+    @Binding("settings.enable")
+    boolean isEnabled();
 
-    @Binding
-    String getName();
+    @Binding("settings.debug")
+    boolean isDebug();
 
 }
 
