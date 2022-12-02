@@ -5,8 +5,8 @@ import org.bukkit.configuration.file.FileConfiguration;
 import java.io.File;
 
 @FunctionalInterface
-public interface ConfigurationReloadCallback {
+public interface ConfigurationReloadCallback<T extends AutoConfiguration> {
 
-    void acceptReload(File file, FileConfiguration fileConfiguration);
+    void acceptReload(File file, T config);
 
 }

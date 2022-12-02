@@ -20,6 +20,11 @@ repositories {
 }
 
 dependencies {
+    compileOnly("org.projectlombok:lombok:1.18.4")
+    annotationProcessor("org.projectlombok:lombok:1.18.4")
+    testCompileOnly("org.projectlombok:lombok:1.18.4")
+    testAnnotationProcessor("org.projectlombok:lombok:1.18.4")
+
     implementation("net.md-5:bungeecord-api:1.19-R0.1-SNAPSHOT")
     implementation("org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT")
 

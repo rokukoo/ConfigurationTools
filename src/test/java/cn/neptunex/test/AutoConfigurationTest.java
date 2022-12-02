@@ -1,9 +1,11 @@
 package cn.neptunex.test;
 
+import cn.neptunex.configuration.annotations.Binding;
 import cn.neptunex.configuration.annotations.Configuration;
 import cn.neptunex.configuration.exceptions.AutoConfigurationException;
 import cn.neptunex.configuration.ConfigurationEnhancer;
 import cn.neptunex.configuration.features.AutoConfiguration;
+import cn.neptunex.configuration.features.AutoConfigurationGroup;
 import cn.neptunex.configuration.features.ConfigurationReloadCallback;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.junit.jupiter.api.Test;
@@ -14,40 +16,32 @@ public class AutoConfigurationTest {
 
     @Test
     public void test1() throws AutoConfigurationException, IOException, InterruptedException {
-        SettingsConfig settingsConfig = ConfigurationEnhancer.enhance(SettingsConfig.class);
-        Thread thread = new Thread(() -> {
-            while (true){
-                System.out.println(settingsConfig.isEnable());
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-            }
+
+        ConfigurationEnhancer.PARENT = "D:\\rokuko\\projects\\configuration\\src\\test\\resources";
+
+        ItemsConfig itemsConfig = ConfigurationEnhancer.enhance(ItemsConfig.class);
+        itemsConfig.groups().forEach(it -> {
+
         });
-        thread.start();
         Thread.sleep(100000000);
     }
 
 }
 
-class TestCallBack implements ConfigurationReloadCallback {
+class TestCallBack implements ConfigurationReloadCallback<ItemsConfig>{
 
     @Override
-    public void acceptReload(File file, FileConfiguration fileConfiguration) {
-        System.out.println("1111");
+    public void acceptReload(File file, ItemsConfig config) {
+        System.out.println("来自文件: " + file.getName() + "的改动, name = "+ config.getName());
     }
 
 }
 
-@Configuration(root = "settings", autoReload = true, reloadCallback = TestCallBack.class)
-interface SettingsConfig extends AutoConfiguration {
+@Configuration(group = true, folder = "items", autoReload = true, reloadCallback = TestCallBack.class)
+interface ItemsConfig extends AutoConfigurationGroup<ItemsConfig> {
 
-    boolean isEnable();
-
-    void setEnable(boolean enable);
-
-    boolean isDebug();
+    String getName();
+    String getPrefix();
 
 }
 

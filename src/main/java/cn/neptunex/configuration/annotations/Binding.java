@@ -8,7 +8,6 @@ import java.lang.annotation.*;
 public @interface Binding {
 
     String value() default "";
-
     // This types signify what the method will do, enums get, set.
     String type() default "get";
 

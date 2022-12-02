@@ -1,6 +1,8 @@
 package cn.neptunex.configuration.driver;
 
+import cn.neptunex.configuration.features.AutoConfiguration;
 import cn.neptunex.configuration.features.ConfigurationReloadCallback;
+import lombok.Setter;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -15,12 +17,15 @@ import java.util.concurrent.Executors;
 
 public class YamlConfigurationDriver implements ConfigurationDriver {
 
+    @Setter
+    private AutoConfiguration instance;
     private final File file;
     private FileConfiguration fileConfiguration;
     private final FileWatchTask watchTask;
     private ConfigurationReloadCallback callback;
 
     private static final ExecutorService cachedThreadPool = Executors.newFixedThreadPool(5);
+
 
     // FIXME: 这里的最后一个参数到时候需要修改一下
     public YamlConfigurationDriver(File file, FileConfiguration fileConfiguration, boolean isAutoReload, Class<? extends ConfigurationReloadCallback> reloadCallback) {
@@ -81,7 +86,7 @@ public class YamlConfigurationDriver implements ConfigurationDriver {
     public void reload() {
         this.fileConfiguration = YamlConfiguration.loadConfiguration(file);
         if (callback != null){
-            callback.acceptReload(this.file, this.fileConfiguration);
+            callback.acceptReload(this.file, instance);
         }
     }
 
