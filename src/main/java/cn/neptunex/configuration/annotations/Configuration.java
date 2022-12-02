@@ -18,7 +18,7 @@ public @interface Configuration {
     boolean autoReload() default false;
     // TODO: 这个地方到时候用来指定文件变化的回调
     Class<?> reloadCallback() default void.class;
-    boolean autoSave() default false;
+    boolean autoSave() default true;
 
     boolean group() default false;
     String folder() default "";

@@ -60,12 +60,13 @@ public class ConfigurationEnhancer {
                 return method.invoke(proxy, args);
             }
         };
-        return (T) Proxy.newProxyInstance(classLoader, new Class[]{configurationInterface}, invocationHandler);
+        return newProxyInstance(classLoader, new Class[]{configurationInterface}, invocationHandler);
     }
 
     private static <T extends AutoConfiguration> T enhanceConfiguration(Class<T> configurationInterface, Configuration configuration){
         String fileName = configuration.value();
         boolean isAutoReload = configuration.autoReload();
+
         // FIXME: 这里到时候肯定还要再改, 因为这里到时候可能会有网络IO, 或者绝对路径读取等等, 我这样写只是测试
         File parent = new File("D:\\rokuko\\projects\\configuration\\src\\test\\resources");
 
@@ -77,7 +78,12 @@ public class ConfigurationEnhancer {
     private static <T extends AutoConfiguration> T newProxyInstance(Class<T> configurationInterface, ConfigurationDriver configurationDriver){
         ClassLoader classLoader = configurationInterface.getClassLoader();
         InvocationHandler invocationHandler = new ConfigurationProxy<>(configurationInterface, configurationDriver);
-        return (T) Proxy.newProxyInstance(classLoader, new Class[]{configurationInterface}, invocationHandler);
+        return newProxyInstance(classLoader, new Class[]{configurationInterface}, invocationHandler);
+    }
+
+    @SuppressWarnings("unchecked")
+    private static <T extends AutoConfiguration> T newProxyInstance(ClassLoader loader, Class<?>[] interfaces, InvocationHandler h){
+        return (T) Proxy.newProxyInstance(loader, interfaces, h);
     }
 
 }

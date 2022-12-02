@@ -38,7 +38,12 @@ public class ConfigurationProxy<T extends AutoConfiguration> implements Invocati
             Class<?> returnType = method.getReturnType();
             return driver.get(path, returnType);
         }else if (isSetXMethod(methodName)){
-            // TODO: 还没有写设置的代码
+            String path = getPath(method);
+            driver.set(path, args[0]);
+            if (configuration.autoSave()){
+                // FIXME: 这里到时候可能要用异步来做
+                driver.save();
+            }
             return null;
         }else if(isReloadMethod(methodName)){
             driver.reload();
@@ -90,7 +95,7 @@ public class ConfigurationProxy<T extends AutoConfiguration> implements Invocati
     }
 
     private static boolean isSetXMethod(String methodName){
-        return "set".startsWith(methodName);
+        return methodName.startsWith("set");
     }
 
 }

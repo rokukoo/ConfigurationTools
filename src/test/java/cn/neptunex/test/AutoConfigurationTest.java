@@ -15,18 +15,19 @@ public class AutoConfigurationTest {
     @Test
     public void test1() throws AutoConfigurationException, IOException, InterruptedException {
         SettingsConfig settingsConfig = ConfigurationEnhancer.enhance(SettingsConfig.class);
-        Thread thread = new Thread(() -> {
-            while (true){
-                System.out.println(settingsConfig.isEnable());
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    throw new RuntimeException(e);
-                }
-            }
-        });
-        thread.start();
-        Thread.sleep(100000000);
+        settingsConfig.setEnable(false);
+//        Thread thread = new Thread(() -> {
+//            while (true){
+//                System.out.println(settingsConfig.isEnable());
+//                try {
+//                    Thread.sleep(1000);
+//                } catch (InterruptedException e) {
+//                    throw new RuntimeException(e);
+//                }
+//            }
+//        });
+//        thread.start();
+//        Thread.sleep(100000000);
     }
 
 }
@@ -36,11 +37,9 @@ interface SettingsConfig extends AutoConfiguration {
 
     boolean isEnable();
 
-    @Binding("debug")
-    boolean isDebug();
+    void setEnable(boolean enable);
 
-    @Binding("welcome")
-    String getWelcome();
+    boolean isDebug();
 
 }
 
