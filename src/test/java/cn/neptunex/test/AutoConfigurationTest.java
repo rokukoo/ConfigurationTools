@@ -17,7 +17,7 @@ public class AutoConfigurationTest {
     @Test
     public void test1() throws AutoConfigurationException, IOException, InterruptedException {
 
-        ConfigurationEnhancer.PARENT = "D:\\rokuko\\projects\\configuration\\src\\test\\resources";
+        ConfigurationEnhancer.PARENT = new File("D:\\rokuko\\projects\\configuration\\src\\test\\resources");
 
         ItemsConfig itemsConfig = ConfigurationEnhancer.enhance(ItemsConfig.class);
         itemsConfig.groups().forEach(it -> {

@@ -19,7 +19,7 @@ import java.util.Objects;
 
 public class ConfigurationEnhancer {
 
-    public static String PARENT = "";
+    public static File PARENT;
 
     private static boolean checkConfigurationAnnotation(Class<?> configurationInterface){
         return configurationInterface.isAnnotationPresent(Configuration.class);

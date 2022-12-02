@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6341e8c6-a37a-4aab-bec7-30ffb48f4e8e" name="Changes" comment="完善了文件重载回调功能">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/build.gradle.kts" afterDir="false" />
+    <list default="true" id="6341e8c6-a37a-4aab-bec7-30ffb48f4e8e" name="Changes" comment="完成了文件重载回调功能">
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/ConfigurationEnhancer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/ConfigurationEnhancer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/annotations/Binding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/annotations/Binding.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/driver/ConfigurationDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/driver/ConfigurationDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/driver/YamlConfigurationDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/driver/YamlConfigurationDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/features/ConfigurationReloadCallback.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/features/ConfigurationReloadCallback.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/cn/neptunex/test/AutoConfigurationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/cn/neptunex/test/AutoConfigurationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/items/item1.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/items/item1.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/items/item2.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/items/item2.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -197,7 +190,7 @@
       <workItem from="1669904343523" duration="4453000" />
       <workItem from="1669939837245" duration="5206000" />
       <workItem from="1669956271787" duration="731000" />
-      <workItem from="1669964315829" duration="3406000" />
+      <workItem from="1669964315829" duration="4093000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1669869690102</created>
@@ -297,7 +290,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669966807850</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="完成了文件重载回调功能">
+      <created>1669968777627</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1669968777627</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -329,6 +329,7 @@
     <MESSAGE value="实现了配置代理的set方法" />
     <MESSAGE value="改正了README.md &amp; 完成了文件重载回调功能" />
     <MESSAGE value="完善了文件重载回调功能" />
-    <option name="LAST_COMMIT_MESSAGE" value="完善了文件重载回调功能" />
+    <MESSAGE value="完成了文件重载回调功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="完成了文件重载回调功能" />
   </component>
 </project>
