@@ -30,7 +30,7 @@ public class ConfigurationProxy<T extends AutoConfiguration> implements Invocati
             driver.save();
             return null;
         }else if (isGetMethod(methodName)){
-            return driver.get((String) root + "." + args[0], (Class<?>) args[1]);
+            return driver.get(root + "." + args[0], (Class<?>) args[1]);
         }else if (isSetMethod(methodName)) {
             driver.set((String) args[0], args[1]);
             return null;

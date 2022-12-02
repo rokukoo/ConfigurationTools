@@ -2,4 +2,4 @@ settings:
   enable: false
   debug: false
 messages:
-  welcome: 我已经改了
+  welcome: '欢迎'

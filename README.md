@@ -1,6 +1,6 @@
-# Configuration Framework
+# ConfigurationTools
 
-This is a framework that can simplify the process for programmers to process configuration files.  
+This is a tool that can simplify the process for programmers to process configuration files.  
 It has the following features:
 
 - better profile operation through proxy mode
@@ -10,7 +10,7 @@ It has the following features:
 - asynchronous update and synchronous modification
 - By annotating the binding node, there will also be a default implementation, that is, binding according to the method name
 
-**Simpler, for example you can quickly access a yaml configuration using the method provided in Configuration Framework.**  
+**Simpler**, for example you can quickly access a yaml configuration using the method provided in ConfigurationTools.  
 First, suppose you have a yaml configuration file named `config.yml` as follows
 ```yaml
 settings:
@@ -36,7 +36,7 @@ SettingsConfig settingsConfig = ConfigurationEnhancer.enhance(SettingsConfig.cla
 settingsConfig.isEnabled();
 settingsConfig.isDebug();
 ```
-For more complex ones, suppose you have a folder `datas` which contains all players' data, and the data of each player is like this
+**For more complex ones**, suppose you have a folder `datas` which contains all players' data, and the data of each player is like this
 ```yaml
 name: 'rokuko'
 password: '******'
@@ -79,5 +79,5 @@ datas.groups().forEach(playerData -> {
 });
 ```
 Due to the space problem, only the most basic usage is shown here.   
-If you are interested in this framework, welcome star and contribute code to it.  
-Your support will be the greatest encouragement
+If you are interested in this project, welcome star and contribute code to it.  
+Your support will be the greatest encouragement.

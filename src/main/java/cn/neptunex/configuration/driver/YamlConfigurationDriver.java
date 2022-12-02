@@ -6,6 +6,8 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 import java.nio.file.*;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
@@ -29,8 +31,11 @@ public class YamlConfigurationDriver implements ConfigurationDriver {
             cachedThreadPool.submit(watchTask);
             if (reloadCallback != ConfigurationReloadCallback.class && reloadCallback != null){
                 try {
-                    this.callback = reloadCallback.newInstance();
-                } catch (InstantiationException | IllegalAccessException e) {
+                    Constructor<? extends ConfigurationReloadCallback> constructor = reloadCallback.getDeclaredConstructor();
+                    constructor.setAccessible(true);
+                    this.callback = constructor.newInstance();
+                } catch (InstantiationException | IllegalAccessException | NoSuchMethodException |
+                         InvocationTargetException e) {
                     throw new RuntimeException(e);
                 }
             }
@@ -46,8 +51,12 @@ public class YamlConfigurationDriver implements ConfigurationDriver {
         this(file, YamlConfiguration.loadConfiguration(file), false, null);
     }
 
-    public YamlConfigurationDriver(File file, boolean isReload) {
-        this(file, YamlConfiguration.loadConfiguration(file), isReload, null);
+    public YamlConfigurationDriver(File file, boolean isAutoReload, Class<? extends ConfigurationReloadCallback> callback) {
+        this(file, YamlConfiguration.loadConfiguration(file), isAutoReload, callback);
+    }
+
+    public YamlConfigurationDriver(File file, boolean isAutoReload) {
+        this(file, YamlConfiguration.loadConfiguration(file), isAutoReload, null);
     }
 
     @Override
@@ -71,6 +80,9 @@ public class YamlConfigurationDriver implements ConfigurationDriver {
     @Override
     public void reload() {
         this.fileConfiguration = YamlConfiguration.loadConfiguration(file);
+        if (callback != null){
+            callback.acceptReload(this.file, this.fileConfiguration);
+        }
     }
 
     class FileWatchTask extends Thread{
@@ -83,12 +95,13 @@ public class YamlConfigurationDriver implements ConfigurationDriver {
                 while (true){
                     WatchKey key = service.take();
                     for (WatchEvent<?> event : Objects.requireNonNull(key).pollEvents()) {
+                        // Prevent receiving two separate ENTRY_MODIFY events: file modified
+                        // and timestamp updated. Instead, receive one ENTRY_MODIFY event
+                        // with two counts.
+                        Thread.sleep( 50 );
                         Path filePath = (Path) event.context();
                         if (filePath.toString().equals(file.getName())){
-                            fileConfiguration = YamlConfiguration.loadConfiguration(file);
-                            if (callback != null){
-                                callback.acceptReload(fileConfiguration);
-                            }
+                            reload();
                         }
                     }
                     if (!key.reset()) break;

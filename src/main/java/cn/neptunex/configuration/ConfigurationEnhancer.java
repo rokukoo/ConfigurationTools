@@ -5,6 +5,7 @@ import cn.neptunex.configuration.driver.ConfigurationDriver;
 import cn.neptunex.configuration.driver.YamlConfigurationDriver;
 import cn.neptunex.configuration.exceptions.AutoConfigurationException;
 import cn.neptunex.configuration.features.AutoConfiguration;
+import cn.neptunex.configuration.features.ConfigurationReloadCallback;
 import cn.neptunex.configuration.proxy.ConfigurationProxy;
 
 import java.io.*;
@@ -42,13 +43,17 @@ public class ConfigurationEnhancer {
         ClassLoader classLoader = configurationInterface.getClassLoader();
         List<T> groups = new LinkedList<>();
 
+        String fileName = configuration.value();
+        boolean isAutoReload = configuration.autoReload();
+        Class<? extends ConfigurationReloadCallback> callbackClz = configuration.reloadCallback();
+
 //        File parent = BukkitPlatformModule.getINSTANCE().getDataFolder();
         // FIXME: 这个地方到时候要视情况而定, 我这里只是做测试
         File parent = new File("D:\\rokuko\\projects\\configuration\\src\\test\\resources");
 
         File dataFolder = new File(parent, folder);
         Arrays.stream(Objects.requireNonNull(dataFolder.listFiles())).forEach(file -> {
-            ConfigurationDriver driver = new YamlConfigurationDriver(file);
+            ConfigurationDriver driver = new YamlConfigurationDriver(file, isAutoReload, callbackClz);
             T temp = newProxyInstance(configurationInterface, driver);
             groups.add(temp);
         });
@@ -66,12 +71,13 @@ public class ConfigurationEnhancer {
     private static <T extends AutoConfiguration> T enhanceConfiguration(Class<T> configurationInterface, Configuration configuration){
         String fileName = configuration.value();
         boolean isAutoReload = configuration.autoReload();
+        Class<? extends ConfigurationReloadCallback> callbackClz = configuration.reloadCallback();
 
         // FIXME: 这里到时候肯定还要再改, 因为这里到时候可能会有网络IO, 或者绝对路径读取等等, 我这样写只是测试
         File parent = new File("D:\\rokuko\\projects\\configuration\\src\\test\\resources");
 
         File file = new File(parent, fileName);
-        ConfigurationDriver driver = new YamlConfigurationDriver(file, isAutoReload);
+        ConfigurationDriver driver = new YamlConfigurationDriver(file, isAutoReload, callbackClz);
         return newProxyInstance(configurationInterface, driver);
     }
 
