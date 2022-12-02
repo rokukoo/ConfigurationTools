@@ -5,7 +5,6 @@ import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.Reader;
 import java.nio.file.*;
 import java.util.Objects;
 import java.util.concurrent.ExecutorService;
@@ -17,20 +16,32 @@ public class YamlConfigurationDriver implements ConfigurationDriver {
     private FileConfiguration fileConfiguration;
     private final FileWatchTask watchTask;
 
-    public YamlConfigurationDriver(File file, FileConfiguration fileConfiguration) {
+    private static final ExecutorService cachedThreadPool = Executors.newFixedThreadPool(5);
+
+    // FIXME: 这里的最后一个参数到时候需要修改一下
+    public YamlConfigurationDriver(File file, FileConfiguration fileConfiguration, boolean isAutoReload, Class<?> reloadCallback) {
         this.file = file;
         this.fileConfiguration = fileConfiguration;
         this.watchTask = new FileWatchTask();
-        // TODO: 这是文件自动重新加载的一个范例代码, 慎用
-//        this.watchTask.start();
+        if (isAutoReload){
+            cachedThreadPool.submit(watchTask);
+            if (reloadCallback != void.class && reloadCallback != null){
+                // TODO: 添加文件修改的回调
+            }
+        }
     }
 
+    // TODO: 这里到时候可能要用网络IO来做试试看
 //    public YamlConfigurationDriver(Reader reader) {
 //        this(YamlConfiguration.loadConfiguration(reader));
 //    }
 
     public YamlConfigurationDriver(File file) {
-        this(file, YamlConfiguration.loadConfiguration(file));
+        this(file, YamlConfiguration.loadConfiguration(file), false, null);
+    }
+
+    public YamlConfigurationDriver(File file, boolean isReload) {
+        this(file, YamlConfiguration.loadConfiguration(file), isReload, null);
     }
 
     @Override
@@ -48,43 +59,30 @@ public class YamlConfigurationDriver implements ConfigurationDriver {
 
     @Override
     public void save() throws IOException {
-        fileConfiguration.save(new File(fileConfiguration.getCurrentPath()));
+        fileConfiguration.save(file.getAbsoluteFile());
     }
 
     class FileWatchTask extends Thread{
 
-        private ExecutorService cachedThreadPool = Executors.newFixedThreadPool(5);
-
         @Override
         public void run() {
-            WatchService service = null;
-            try {
-                service = FileSystems.getDefault().newWatchService();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
             String directory = file.getParent();
-            try {
-                Paths.get(directory).register(service, StandardWatchEventKinds.ENTRY_MODIFY);
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
-            while (true) {
-                WatchKey key = null;
-                try {
-                    key = service.take();
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                for (WatchEvent<?> event : Objects.requireNonNull(key).pollEvents()) {
-                    if (event.context().toString().equals(file.getName())){
-                        fileConfiguration = YamlConfiguration.loadConfiguration(file);
+            try(WatchService service = FileSystems.getDefault().newWatchService()) {
+                Paths.get(directory).register(Objects.requireNonNull(service), StandardWatchEventKinds.ENTRY_MODIFY);
+                while (true){
+                    WatchKey key = service.take();
+                    for (WatchEvent<?> event : Objects.requireNonNull(key).pollEvents()) {
+                        Path filePath = (Path) event.context();
+                        if (filePath.toString().equals(file.getName())){
+                            fileConfiguration = YamlConfiguration.loadConfiguration(file);
+                        }
                     }
+                    if (!key.reset()) break;
                 }
-                if (!key.reset()) break;
+            } catch (IOException | InterruptedException e) {
+                throw new RuntimeException(e);
             }
         }
-
     }
 
 }

@@ -65,12 +65,12 @@ public class ConfigurationEnhancer {
 
     private static <T extends AutoConfiguration> T enhanceConfiguration(Class<T> configurationInterface, Configuration configuration){
         String fileName = configuration.value();
-
+        boolean isAutoReload = configuration.autoReload();
         // FIXME: 这里到时候肯定还要再改, 因为这里到时候可能会有网络IO, 或者绝对路径读取等等, 我这样写只是测试
         File parent = new File("D:\\rokuko\\projects\\configuration\\src\\test\\resources");
 
         File file = new File(parent, fileName);
-        ConfigurationDriver driver = new YamlConfigurationDriver(file);
+        ConfigurationDriver driver = new YamlConfigurationDriver(file, isAutoReload);
         return newProxyInstance(configurationInterface, driver);
     }
 

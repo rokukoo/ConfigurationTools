@@ -31,7 +31,7 @@ public class AutoConfigurationTest {
 
 }
 
-@Configuration(root = "settings")
+@Configuration(root = "settings", autoReload = true)
 interface SettingsConfig extends AutoConfiguration {
 
     boolean isEnable();

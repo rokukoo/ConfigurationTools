@@ -1,5 +1,5 @@
 settings:
-  enable: true
+  enable: false
   debug: false
 
 messages:

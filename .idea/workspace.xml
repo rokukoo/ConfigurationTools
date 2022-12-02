@@ -4,9 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6341e8c6-a37a-4aab-bec7-30ffb48f4e8e" name="Changes" comment="添加并实现了Configuration的root配置">
+    <list default="true" id="6341e8c6-a37a-4aab-bec7-30ffb48f4e8e" name="Changes" comment="实现了节点值默认通过方法名获取">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/proxy/ConfigurationProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/proxy/ConfigurationProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/ConfigurationEnhancer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/ConfigurationEnhancer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/annotations/Binding.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/annotations/Binding.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/annotations/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/annotations/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/driver/YamlConfigurationDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/driver/YamlConfigurationDriver.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/cn/neptunex/test/AutoConfigurationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/cn/neptunex/test/AutoConfigurationTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/config.yml" afterDir="false" />
     </list>
@@ -189,7 +192,7 @@
       <workItem from="1669869436081" duration="12882000" />
       <workItem from="1669899846041" duration="3549000" />
       <workItem from="1669904343523" duration="4453000" />
-      <workItem from="1669939837245" duration="1522000" />
+      <workItem from="1669939837245" duration="3098000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1669869690102</created>
@@ -247,7 +250,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669940533250</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="实现了节点值默认通过方法名获取">
+      <created>1669941421607</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1669941421607</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -273,17 +283,7 @@
     <MESSAGE value="完善了README.md" />
     <MESSAGE value="初步完成了文件自动重载的代码" />
     <MESSAGE value="添加并实现了Configuration的root配置" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加并实现了Configuration的root配置" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="java-line">
-          <url>file://$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/driver/ConfigurationDriver.java</url>
-          <line>5</line>
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="实现了节点值默认通过方法名获取" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了节点值默认通过方法名获取" />
   </component>
 </project>
