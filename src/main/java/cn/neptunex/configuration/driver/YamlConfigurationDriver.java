@@ -62,6 +62,11 @@ public class YamlConfigurationDriver implements ConfigurationDriver {
         fileConfiguration.save(file.getAbsoluteFile());
     }
 
+    @Override
+    public void reload() {
+        this.fileConfiguration = YamlConfiguration.loadConfiguration(file);
+    }
+
     class FileWatchTask extends Thread{
 
         @Override

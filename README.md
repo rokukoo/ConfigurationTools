@@ -32,7 +32,7 @@ interface SettingsConfig extends AutoConfiguration {
 ```
 Next, you can enhance the SettingsConfig using `ConfigurationEnhancer#enhance` and get a proxy SettingsConfig object
 ```java
-SettingsConfig settingsConfig = ConfigurationEnhancer.enhance(MyConfigGroup.class);
+SettingsConfig settingsConfig = ConfigurationEnhancer.enhance(SettingsConfig.class);
 settingsConfig.isEnabled();
 settingsConfig.isDebug();
 ```

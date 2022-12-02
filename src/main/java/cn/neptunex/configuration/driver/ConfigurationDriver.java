@@ -11,4 +11,6 @@ public interface ConfigurationDriver {
 
     void save() throws IOException;
 
+    void reload();
+
 }

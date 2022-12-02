@@ -40,6 +40,9 @@ public class ConfigurationProxy<T extends AutoConfiguration> implements Invocati
         }else if (isSetXMethod(methodName)){
             // TODO: 还没有写设置的代码
             return null;
+        }else if(isReloadMethod(methodName)){
+            driver.reload();
+            return null;
         }else {
             return method.invoke(proxy, args);
         }
@@ -76,6 +79,10 @@ public class ConfigurationProxy<T extends AutoConfiguration> implements Invocati
 
     private static boolean isSetMethod(String methodName){
         return "set".equals(methodName);
+    }
+
+    private static boolean isReloadMethod(String methodName){
+        return "reload".equals(methodName);
     }
 
     private static boolean isGetXMethod(String methodName){

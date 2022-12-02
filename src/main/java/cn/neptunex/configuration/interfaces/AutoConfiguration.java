@@ -10,4 +10,6 @@ public interface AutoConfiguration {
 
     void save() throws IOException;
 
+    void reload();
+
 }
