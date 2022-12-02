@@ -4,13 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6341e8c6-a37a-4aab-bec7-30ffb48f4e8e" name="Changes" comment="完善了README.md">
+    <list default="true" id="6341e8c6-a37a-4aab-bec7-30ffb48f4e8e" name="Changes" comment="初步完成了文件自动重载的代码">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/ConfigurationEnhancer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/ConfigurationEnhancer.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/driver/YamlConfigurationDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/driver/YamlConfigurationDriver.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/cn/neptunex/test/AutoConfigurationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/cn/neptunex/test/AutoConfigurationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/config.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -108,20 +104,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.pluginManager"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Gradle.AutoConfigurationTest.test1">
     <configuration name="AutoConfigurationTest" type="GradleRunConfiguration" factoryName="Gradle" temporary="true">
       <ExternalSystemSettings>
@@ -190,7 +186,8 @@
       <updated>1669869434248</updated>
       <workItem from="1669869436081" duration="12882000" />
       <workItem from="1669899846041" duration="3549000" />
-      <workItem from="1669904343523" duration="4028000" />
+      <workItem from="1669904343523" duration="4453000" />
+      <workItem from="1669939837245" duration="443000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1669869690102</created>
@@ -234,7 +231,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669905952945</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="初步完成了文件自动重载的代码">
+      <created>1669908541109</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1669908541109</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -258,7 +262,8 @@
     <MESSAGE value="更名配置接口为AutoConfiguration, 并且初步引入了Yaml的实现" />
     <MESSAGE value="完成了配置文件组的代码" />
     <MESSAGE value="完善了README.md" />
-    <option name="LAST_COMMIT_MESSAGE" value="完善了README.md" />
+    <MESSAGE value="初步完成了文件自动重载的代码" />
+    <option name="LAST_COMMIT_MESSAGE" value="初步完成了文件自动重载的代码" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

@@ -10,9 +10,6 @@ import cn.neptunex.configuration.proxy.ConfigurationProxy;
 import java.io.*;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Proxy;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
 import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
@@ -31,11 +28,11 @@ public class ConfigurationEnhancer {
         if (!hasAnnotation) throw new AutoConfigurationException("AutoConfiguration interface must be decorated with Configuration annotation.");
         Configuration configuration = configurationInterface.getAnnotation(Configuration.class);
         return configuration.group()
-                ? processConfigurationGroup(configurationInterface, configuration)
-                : processConfiguration(configurationInterface, configuration);
+                ? enhanceConfigurationGroup(configurationInterface, configuration)
+                : enhanceConfiguration(configurationInterface, configuration);
     }
 
-    private static <T extends AutoConfiguration> T processConfigurationGroup(Class<T> configurationInterface, Configuration configuration) throws AutoConfigurationException, IOException {
+    private static <T extends AutoConfiguration> T enhanceConfigurationGroup(Class<T> configurationInterface, Configuration configuration) throws AutoConfigurationException, IOException {
         boolean isGroup = configuration.group();
         String value = configuration.value();
         String folder = configuration.folder();
@@ -51,18 +48,8 @@ public class ConfigurationEnhancer {
 
         File dataFolder = new File(parent, folder);
         Arrays.stream(Objects.requireNonNull(dataFolder.listFiles())).forEach(file -> {
-//            Path filePath = Paths.get(file.getPath());
-//            try(BufferedReader reader = Files.newBufferedReader(filePath)){
-//                ConfigurationDriver driver = new YamlConfigurationDriver(reader);
-//                InvocationHandler invocationHandler = new ConfigurationProxy<>(configurationInterface, driver);
-//                T temp = (T) Proxy.newProxyInstance(classLoader, new Class[]{configurationInterface}, invocationHandler);
-//                groups.add(temp);
-//            } catch (IOException e) {
-//                throw new RuntimeException(e);
-//            }
             ConfigurationDriver driver = new YamlConfigurationDriver(file);
-            InvocationHandler invocationHandler = new ConfigurationProxy<>(configurationInterface, driver);
-            T temp = (T) Proxy.newProxyInstance(classLoader, new Class[]{configurationInterface}, invocationHandler);
+            T temp = newProxyInstance(configurationInterface, driver);
             groups.add(temp);
         });
 
@@ -76,9 +63,7 @@ public class ConfigurationEnhancer {
         return (T) Proxy.newProxyInstance(classLoader, new Class[]{configurationInterface}, invocationHandler);
     }
 
-    private static <T extends AutoConfiguration> T processConfiguration(Class<T> configurationInterface, Configuration configuration){
-        ClassLoader classLoader = configurationInterface.getClassLoader();
-
+    private static <T extends AutoConfiguration> T enhanceConfiguration(Class<T> configurationInterface, Configuration configuration){
         String fileName = configuration.value();
 
         // FIXME: 这里到时候肯定还要再改, 因为这里到时候可能会有网络IO, 或者绝对路径读取等等, 我这样写只是测试
@@ -86,8 +71,12 @@ public class ConfigurationEnhancer {
 
         File file = new File(parent, fileName);
         ConfigurationDriver driver = new YamlConfigurationDriver(file);
+        return newProxyInstance(configurationInterface, driver);
+    }
 
-        InvocationHandler invocationHandler = new ConfigurationProxy<>(configurationInterface, driver);
+    private static <T extends AutoConfiguration> T newProxyInstance(Class<T> configurationInterface, ConfigurationDriver configurationDriver){
+        ClassLoader classLoader = configurationInterface.getClassLoader();
+        InvocationHandler invocationHandler = new ConfigurationProxy<>(configurationInterface, configurationDriver);
         return (T) Proxy.newProxyInstance(classLoader, new Class[]{configurationInterface}, invocationHandler);
     }
 

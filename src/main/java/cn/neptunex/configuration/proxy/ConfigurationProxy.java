@@ -1,6 +1,7 @@
 package cn.neptunex.configuration.proxy;
 
 import cn.neptunex.configuration.annotations.Binding;
+import cn.neptunex.configuration.annotations.Configuration;
 import cn.neptunex.configuration.driver.ConfigurationDriver;
 import cn.neptunex.configuration.interfaces.AutoConfiguration;
 
@@ -9,11 +10,15 @@ import java.lang.reflect.Method;
 public class ConfigurationProxy<T extends AutoConfiguration> implements InvocationHandler {
 
     private final Class<T> configurationInterface;
+    private final Configuration configuration;
+    private String root;
     private final ConfigurationDriver driver;
 
     public ConfigurationProxy(Class<T> configurationInterface, ConfigurationDriver driver) {
         this.configurationInterface = configurationInterface;
+        this.configuration = configurationInterface.getAnnotation(Configuration.class);
         this.driver = driver;
+        this.root = configuration.root();
     }
 
     @Override
@@ -23,7 +28,7 @@ public class ConfigurationProxy<T extends AutoConfiguration> implements Invocati
             driver.save();
             return null;
         }else if (isGetMethod(methodName)){
-            return driver.get((String) args[0], (Class<?>) args[1]);
+            return driver.get((String) root + "." + args[0], (Class<?>) args[1]);
         }else if (isSetMethod(methodName)) {
             driver.set((String) args[0], args[1]);
             return null;
@@ -31,7 +36,7 @@ public class ConfigurationProxy<T extends AutoConfiguration> implements Invocati
             Binding binding = method.getAnnotation(Binding.class);
             String path = binding.value();
             Class<?> returnType = method.getReturnType();
-            return driver.get(path, returnType);
+            return driver.get(root + "." + path, returnType);
         }else if (isSetXMethod(methodName)){
             // TODO: 还没有写设置的代码
             return null;
