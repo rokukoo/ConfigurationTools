@@ -17,7 +17,7 @@ public class AutoConfigurationTest {
         SettingsConfig settingsConfig = ConfigurationEnhancer.enhance(SettingsConfig.class);
         Thread thread = new Thread(() -> {
             while (true){
-                System.out.println(settingsConfig.getWelcome());
+                System.out.println(settingsConfig.isEnable());
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -31,15 +31,15 @@ public class AutoConfigurationTest {
 
 }
 
-@Configuration
+@Configuration(root = "settings")
 interface SettingsConfig extends AutoConfiguration {
-    @Binding("settings.enable")
-    boolean isEnabled();
 
-    @Binding("settings.debug")
+    boolean isEnable();
+
+    @Binding("debug")
     boolean isDebug();
 
-    @Binding("messages.welcome")
+    @Binding("welcome")
     String getWelcome();
 
 }
