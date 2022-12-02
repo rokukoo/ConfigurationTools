@@ -1,4 +1,4 @@
-package cn.neptunex.configuration.interfaces;
+package cn.neptunex.configuration.features;
 
 public interface ConfigurationMapper<K extends AutoConfiguration, T> {
 

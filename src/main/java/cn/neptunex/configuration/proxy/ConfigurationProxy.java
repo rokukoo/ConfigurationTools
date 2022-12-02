@@ -3,11 +3,12 @@ package cn.neptunex.configuration.proxy;
 import cn.neptunex.configuration.annotations.Binding;
 import cn.neptunex.configuration.annotations.Configuration;
 import cn.neptunex.configuration.driver.ConfigurationDriver;
-import cn.neptunex.configuration.interfaces.AutoConfiguration;
+import cn.neptunex.configuration.features.AutoConfiguration;
 import org.apache.commons.lang.StringUtils;
 
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
+
 public class ConfigurationProxy<T extends AutoConfiguration> implements InvocationHandler {
 
     private final Class<T> configurationInterface;

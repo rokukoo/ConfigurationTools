@@ -1,5 +1,6 @@
 package cn.neptunex.configuration.driver;
 
+import cn.neptunex.configuration.features.ConfigurationReloadCallback;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -15,18 +16,23 @@ public class YamlConfigurationDriver implements ConfigurationDriver {
     private final File file;
     private FileConfiguration fileConfiguration;
     private final FileWatchTask watchTask;
+    private ConfigurationReloadCallback callback;
 
     private static final ExecutorService cachedThreadPool = Executors.newFixedThreadPool(5);
 
     // FIXME: 这里的最后一个参数到时候需要修改一下
-    public YamlConfigurationDriver(File file, FileConfiguration fileConfiguration, boolean isAutoReload, Class<?> reloadCallback) {
+    public YamlConfigurationDriver(File file, FileConfiguration fileConfiguration, boolean isAutoReload, Class<? extends ConfigurationReloadCallback> reloadCallback) {
         this.file = file;
         this.fileConfiguration = fileConfiguration;
         this.watchTask = new FileWatchTask();
         if (isAutoReload){
             cachedThreadPool.submit(watchTask);
-            if (reloadCallback != void.class && reloadCallback != null){
-                // TODO: 添加文件修改的回调
+            if (reloadCallback != ConfigurationReloadCallback.class && reloadCallback != null){
+                try {
+                    this.callback = reloadCallback.newInstance();
+                } catch (InstantiationException | IllegalAccessException e) {
+                    throw new RuntimeException(e);
+                }
             }
         }
     }
@@ -80,6 +86,9 @@ public class YamlConfigurationDriver implements ConfigurationDriver {
                         Path filePath = (Path) event.context();
                         if (filePath.toString().equals(file.getName())){
                             fileConfiguration = YamlConfiguration.loadConfiguration(file);
+                            if (callback != null){
+                                callback.acceptReload(fileConfiguration);
+                            }
                         }
                     }
                     if (!key.reset()) break;

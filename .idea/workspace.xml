@@ -4,13 +4,18 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="6341e8c6-a37a-4aab-bec7-30ffb48f4e8e" name="Changes" comment="完成了配置接口的reload方法">
+    <list default="true" id="6341e8c6-a37a-4aab-bec7-30ffb48f4e8e" name="Changes" comment="实现了配置代理的set方法">
+      <change afterPath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/features/ConfigurationReloadCallback.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/ConfigurationEnhancer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/ConfigurationEnhancer.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/annotations/Configuration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/annotations/Configuration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/driver/YamlConfigurationDriver.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/driver/YamlConfigurationDriver.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/interfaces/AutoConfiguration.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/features/AutoConfiguration.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/interfaces/AutoConfigurationGroup.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/features/AutoConfigurationGroup.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/interfaces/ConfigurationMapper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/features/ConfigurationMapper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/proxy/ConfigurationProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/cn/neptunex/configuration/proxy/ConfigurationProxy.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/cn/neptunex/test/AutoConfigurationTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/cn/neptunex/test/AutoConfigurationTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/config.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/config.yml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -191,7 +196,9 @@
       <workItem from="1669869436081" duration="12882000" />
       <workItem from="1669899846041" duration="3549000" />
       <workItem from="1669904343523" duration="4453000" />
-      <workItem from="1669939837245" duration="4737000" />
+      <workItem from="1669939837245" duration="5206000" />
+      <workItem from="1669956271787" duration="731000" />
+      <workItem from="1669964315829" duration="327000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1669869690102</created>
@@ -270,7 +277,14 @@
       <option name="project" value="LOCAL" />
       <updated>1669943983563</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="实现了配置代理的set方法">
+      <created>1669945131681</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1669945131681</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -299,6 +313,7 @@
     <MESSAGE value="实现了节点值默认通过方法名获取" />
     <MESSAGE value="大致完成了文件自动更新" />
     <MESSAGE value="完成了配置接口的reload方法" />
-    <option name="LAST_COMMIT_MESSAGE" value="完成了配置接口的reload方法" />
+    <MESSAGE value="实现了配置代理的set方法" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了配置代理的set方法" />
   </component>
 </project>

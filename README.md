@@ -68,7 +68,7 @@ interface DataConfig extends AutoConfigurationGroup<DataConfig> {
 Finally, you can obtain all the configuration file data through the enhanced object's `groups` method
 ```java
 DataConfig datas = ConfigurationEnhancer.enhance(DataConfig.class);
-datas.forEach(playerData -> {
+datas.groups().forEach(playerData -> {
     logger.info(
         "name: {}, password: {}, count: {}, hobbies: {}",
         playerData.getName(),

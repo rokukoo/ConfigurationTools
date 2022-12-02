@@ -1,11 +1,9 @@
 package cn.neptunex.test;
 
-import cn.neptunex.configuration.annotations.Binding;
 import cn.neptunex.configuration.annotations.Configuration;
 import cn.neptunex.configuration.exceptions.AutoConfigurationException;
 import cn.neptunex.configuration.ConfigurationEnhancer;
-import cn.neptunex.configuration.interfaces.AutoConfiguration;
-import cn.neptunex.configuration.interfaces.AutoConfigurationGroup;
+import cn.neptunex.configuration.features.AutoConfiguration;
 import org.junit.jupiter.api.Test;
 
 import java.io.*;

@@ -4,7 +4,7 @@ import cn.neptunex.configuration.annotations.Configuration;
 import cn.neptunex.configuration.driver.ConfigurationDriver;
 import cn.neptunex.configuration.driver.YamlConfigurationDriver;
 import cn.neptunex.configuration.exceptions.AutoConfigurationException;
-import cn.neptunex.configuration.interfaces.AutoConfiguration;
+import cn.neptunex.configuration.features.AutoConfiguration;
 import cn.neptunex.configuration.proxy.ConfigurationProxy;
 
 import java.io.*;
